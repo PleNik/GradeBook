@@ -1,7 +1,7 @@
-//Пример 5
-//Определение класса GradeBook в файле, отдельном от main
+//Пример 6
+//Определение класса GradeBook. Файл представляет собой открытый интерфейс
+//GradeBook, не раскрывая реализации методов, определенных в файле GradeBook.cpp
 
-#include <iostream>
 #include <string>
 
 //определение класса GradeBook
@@ -9,28 +9,18 @@ class GradeBook
 {
 public:
     //конструктор инициализирует название курса courseName переданной строкой
-    GradeBook(std::string name)
-    {
-        setCourseName(name);
-    }
+    GradeBook(std::string name);
 
     //метод, устанавливающий название курса
-    void setCourseName(std::string name)
-    {
-        courseName = name;  //сохранить название курса в объекте
-    }
+    void setCourseName(std::string name);
+
 
     //метод, получающий название курса
-    std::string getCourseName()
-    {
-        return courseName;  //возвратить название курса из объекта
-    }
+    std::string getCourseName();
 
     //метод, выводящий приветствие пользователю GradeBook
-    void displayMessage()
-    {
-        std::cout << "Welcome to the GradeBook for\n" << getCourseName() << "!" << std::endl;
-    }
+    void displayMessage();
+
 
     private:
         std::string courseName; //название курса для данного объекта класса GradeBook
