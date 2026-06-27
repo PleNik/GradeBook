@@ -9,14 +9,20 @@ class GradeBook
 {
 public:
     //конструктор инициализирует название курса courseName переданной строкой
-    GradeBook(std::string name);
+    GradeBook(std::string nameOfCourse, std::string nameOfTeacher);
 
     //метод, устанавливающий название курса
-    void setCourseName(std::string name);
+    void setCourseName(std::string nameOfCourse);
+
+    //метод, устанавливающий имя преподавателя
+    void setTeaherName(std::string nameOfTeacher);
 
 
     //метод, получающий название курса
     std::string getCourseName();
+
+    //метод, получающий имя преподавателя
+    std::string getTeacherName();
 
     //метод, выводящий приветствие пользователю GradeBook
     void displayMessage();
@@ -24,5 +30,6 @@ public:
 
     private:
         std::string courseName; //название курса для данного объекта класса GradeBook
+        std::string teacherName; //имя преподавателя, ведущего курс
 
 };  //конец класса GradeBook

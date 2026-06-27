@@ -9,8 +9,8 @@
 int main()
 {
     //создать 2 объекта класса GradeBook
-    GradeBook gradeBook1("CS101 Introduction to C++ Programming");
-    GradeBook gradeBook2("CS102 C++ Data Structures");
+    GradeBook gradeBook1("CS101 Introduction to C++ Programming", "Ivanov Victor");
+    GradeBook gradeBook2("CS102 C++ Data Structures", "Petrov Pavel");
 
     //вывести исходное значение courseName для каждого объекта
     std::cout<<"gradeBook1's initial course name is: "
@@ -26,6 +26,12 @@ int main()
         << gradeBook1.getCourseName()
         << "\ngradeBook2's initial course name is: "
         << gradeBook2.getCourseName() << std::endl;
+    std::cout<<std::endl;
+
+    //вывести приветствие для каждого объекта
+    gradeBook1.displayMessage();
+    std::cout<<std::endl;
+    gradeBook2.displayMessage();
 
 
     return 0;
