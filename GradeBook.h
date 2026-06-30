@@ -27,6 +27,9 @@ public:
     //метод, выводящий приветствие пользователю GradeBook
     void displayMessage();
 
+    //метод усредняет введенные оценки
+    void determineClassAverage();
+
 
     private:
         std::string courseName; //название курса для данного объекта класса GradeBook

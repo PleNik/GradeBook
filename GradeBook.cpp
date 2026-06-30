@@ -20,7 +20,7 @@
         if(nameOfCourse.length() <= 25)  //если не более 25 символов
             courseName = nameOfCourse;  //сохранить название курса в объекте
 
-        if(nameOfCourse.length() > 25)  //если в названии более 25 символов
+        else  //если в названии более 25 символов
         {
             //записать в courseName первые 25 символов параметра name
             courseName = nameOfCourse.substr(0, 25);    //начать с 0, длина 25
@@ -57,3 +57,24 @@
             << "\nThis course is presented by: " << getTeacherName() << std::endl;
     }
 
+    //метод усредняет введенные оценки
+    void GradeBook::determineClassAverage()
+    {
+        int total = 0;  //сумма оценок, введенных пользователем
+        int gradeCounter = 0;   //счетчик оценок
+        int grade = 0;  //значение введенной пользователем оценки
+        int average;    //средняя оценка
+
+        while(gradeCounter < 10)
+        {
+            std::cout << "Enter grade: ";   //запросить ввод
+            std::cin >> grade;
+            total += grade;
+            gradeCounter ++;
+        }
+
+        average = total / gradeCounter;
+
+        std::cout << "\nTotal of all " << gradeCounter << " grades is " << total << std::endl;
+        std::cout << "Class average is " << average << std::endl;
+     }

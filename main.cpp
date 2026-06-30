@@ -33,6 +33,9 @@ int main()
     std::cout<<std::endl;
     gradeBook2.displayMessage();
 
+    //вывести среднюю оценку в группе студентов
+    gradeBook1.determineClassAverage();
+
 
     return 0;
 }
