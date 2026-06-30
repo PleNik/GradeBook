@@ -1,8 +1,12 @@
-//Пример 7
-//Реализация методов класса GradeBook.
-//Метод setCourseName производит подтверждение данных
+//Пример 10
+//Метод *DetermineClassAverage* модифицирован.
+//При каждом запуске он обрабатывает оценки для произвольного числа студентов.
 
 #include <iostream>
+using std::fixed;
+
+#include <iomanip>
+using std::setprecision;
 
 #include "GradeBook.h"
 
@@ -63,18 +67,31 @@
         int total = 0;  //сумма оценок, введенных пользователем
         int gradeCounter = 0;   //счетчик оценок
         int grade = 0;  //значение введенной пользователем оценки
-        int average;    //средняя оценка
+        double average;    //средняя оценка
 
-        while(gradeCounter < 10)
+        std::cout << "Enter grade or -1 to quit: ";
+        std::cin >> grade;
+
+        while(grade != -1)
         {
-            std::cout << "Enter grade: ";   //запросить ввод
-            std::cin >> grade;
             total += grade;
             gradeCounter ++;
+
+            std::cout << "Enter grade or -1 to quit: ";
+            std::cin >> grade;
         }
 
-        average = total / gradeCounter;
+        if(gradeCounter != 0)
+        {
+            average = static_cast<double>(total)/gradeCounter;
 
-        std::cout << "\nTotal of all " << gradeCounter << " grades is " << total << std::endl;
-        std::cout << "Class average is " << average << std::endl;
+            std::cout << "\nTotal of all " << gradeCounter
+                << " grades entered is " << total << std::endl;
+            std::cout << "Class average is " << setprecision(2) << fixed
+                << average << std::endl;
+        }
+        else
+            std::cout << "No grades were entered" << std::endl;
+
+
      }
