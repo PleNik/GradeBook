@@ -1,5 +1,8 @@
-//Пример 5
-//Включение класса GradeBook из GradeBook.h в главную программу
+//Пример 11
+//Новая версия класса просит пользователя ввести ряд буквенных оценок (метод void inputGrades())
+//и затем выводит сводку числа студентов, получивших каждую из возможных оценок
+//(метод *void displayGradeReport()*). Введены дополнительные поля класса:
+//int aCount, int bCount, int cCount, int dCount, int fCount - числа оценок в каждой категории A, B, C, D, F.
 
 #include <iostream>
 
@@ -8,33 +11,17 @@
 //функция main начинает исполнение программы
 int main()
 {
-    //создать 2 объекта класса GradeBook
+    //создать объект класса GradeBook
     GradeBook gradeBook1("CS101 Introduction to C++ Programming", "Ivanov Victor");
-    GradeBook gradeBook2("CS102 C++ Data Structures", "Petrov Pavel");
 
-    //вывести исходное значение courseName для каждого объекта
-    std::cout<<"gradeBook1's initial course name is: "
-        << gradeBook1.getCourseName()
-        << "\ngradeBook2's initial course name is: "
-        << gradeBook2.getCourseName() << std::endl;
-
-    //модифицировать courseName для gradeBook1 корректной строкой
-    gradeBook1.setCourseName("CS101 C++ Programming");
-
-    //вывести courseName для каждого объекта
-    std::cout<<"\ngradeBook1's initial course name is: "
-        << gradeBook1.getCourseName()
-        << "\ngradeBook2's initial course name is: "
-        << gradeBook2.getCourseName() << std::endl;
-    std::cout<<std::endl;
-
-    //вывести приветствие для каждого объекта
+    //вывести приветствие
     gradeBook1.displayMessage();
-    std::cout<<std::endl;
-    gradeBook2.displayMessage();
 
-    //вывести среднюю оценку в группе студентов
-    gradeBook1.determineClassAverage();
+    //прочитать вводимые оценки
+    gradeBook1.inputGrades();
+
+    //вывести отчет по оценкам
+    gradeBook1.displayGradeReport();
 
 
     return 0;

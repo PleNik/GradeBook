@@ -1,6 +1,8 @@
-//Пример 10
-//Метод *DetermineClassAverage* модифицирован.
-//При каждом запуске он обрабатывает оценки для произвольного числа студентов.
+//Пример 11
+//Новая версия класса просит пользователя ввести ряд буквенных оценок (метод void inputGrades())
+//и затем выводит сводку числа студентов, получивших каждую из возможных оценок
+//(метод *void displayGradeReport()*). Введены дополнительные поля класса:
+//int aCount, int bCount, int cCount, int dCount, int fCount - числа оценок в каждой категории A, B, C, D, F.
 
 #include <iostream>
 using std::fixed;
@@ -16,6 +18,11 @@ using std::setprecision;
     {
         setCourseName(nameOfCourse);
         setTeaherName(nameOfTeacher);
+        aCount = 0; //инициализировать нулем счетчик оценок А
+        bCount = 0; //инициализировать нулем счетчик оценок B
+        cCount = 0; //инициализировать нулем счетчик оценок C
+        dCount = 0; //инициализировать нулем счетчик оценок D
+        fCount = 0; //инициализировать нулем счетчик оценок F
     }
 
     //метод, устанавливающий название курса гарантирует, что название курса содержит не более 25 символов
@@ -94,4 +101,68 @@ using std::setprecision;
             std::cout << "No grades were entered" << std::endl;
 
 
+     }
+
+     //ввести произвольное число оценок, обновить счетчик оценок
+     void GradeBook::inputGrades()
+     {
+        int grade;  //оценка, введенная пользователем
+
+        std::cout << "Enter the letter grades." << std::endl
+            << "Enter the EOF character to end input." << std::endl;
+
+        //цикл, пока пользователь не введет комбинацию для конца файла
+        while( (grade = std::cin.get()) != EOF)
+        {
+            //определить, какакя введена оценка
+            switch(grade)
+            {
+                case 'A':   //оценка А в верхнем регистре
+                case 'a':   //или а в нижнем регистреа
+                    aCount++;
+                    break;
+
+                case 'B':   //оценка B в верхнем регистре
+                case 'b':   //или b в нижнем регистреа
+                    bCount++;
+                    break;
+
+                case 'C':   //оценка C в верхнем регистре
+                case 'c':   //или c в нижнем регистреа
+                    cCount++;
+                    break;
+
+                case 'D':   //оценка D в верхнем регистре
+                case 'd':   //или d в нижнем регистреа
+                    dCount++;
+                    break;
+
+                case 'F':   //оценка F в верхнем регистре
+                case 'f':   //или f в нижнем регистреа
+                    fCount++;
+                    break;
+
+                case '\n':  //игнорировать вводимые символы новой строки,
+                case '\t':  //табуляции,
+                case ' ':   //и пробела
+                    break;
+
+                default:    //перехватывает все остальные символы
+                    std::cout << "Incorrect letter grade entered."
+                        << "Enter a new grade." << std::endl;
+            }
+        }
+     }
+
+     //вывести отчет по оценкам, введенным пользователем
+     void GradeBook::displayGradeReport()
+     {
+        //вывести сводку результатов
+        std::cout << "\n\nNumber of students who received each letter grade:"
+            << "\nA: " << aCount    //вывести число оценок А
+            << "\nB: " << bCount    //вывести число оценок B
+            << "\nC: " << cCount    //вывести число оценок C
+            << "\nD: " << dCount    //вывести число оценок D
+            << "\nF: " << fCount    //вывести число оценок F
+            << std::endl;
      }
