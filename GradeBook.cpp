@@ -1,8 +1,5 @@
-//Пример 11
-//Новая версия класса просит пользователя ввести ряд буквенных оценок (метод void inputGrades())
-//и затем выводит сводку числа студентов, получивших каждую из возможных оценок
-//(метод *void displayGradeReport()*). Введены дополнительные поля класса:
-//int aCount, int bCount, int cCount, int dCount, int fCount - числа оценок в каждой категории A, B, C, D, F.
+//Пример 12
+//В метод void inputGrades() добавлен расчет средней оценки класса. Вес оценки 'A' - 4 пункта, оценки 'B' - 3 пункта и т.д.
 
 #include <iostream>
 using std::fixed;
@@ -163,6 +160,10 @@ using std::setprecision;
             << "\nB: " << bCount    //вывести число оценок B
             << "\nC: " << cCount    //вывести число оценок C
             << "\nD: " << dCount    //вывести число оценок D
-            << "\nF: " << fCount    //вывести число оценок F
-            << std::endl;
+            << "\nF: " << fCount;    //вывести число оценок F
+
+            int count = aCount + bCount + cCount + dCount + fCount;
+
+        std::cout << "\n\nAverage rating for class: " << (aCount*4 + bCount*3 + cCount*2 + dCount)/count;
+        std::cout << std::endl;
      }
