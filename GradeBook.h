@@ -1,5 +1,6 @@
-//Пример 12
-//В метод void inputGrades() добавлен расчет средней оценки класса. Вес оценки 'A' - 4 пункта, оценки 'B' - 3 пункта и т.д.
+//Пример 13
+//Произведена модификация класса, включая в него определяемую пользователем
+//функцию maximum, которая находит и возвращает наибольшее из трех целых значений.
 
 #include <string>
 
@@ -8,26 +9,16 @@ class GradeBook
 {
 public:
     //конструктор инициализирует название курса courseName переданной строкой
-    GradeBook(std::string nameOfCourse, std::string nameOfTeacher);
+    GradeBook(std::string nameOfCourse);
 
     //метод, устанавливающий название курса
     void setCourseName(std::string nameOfCourse);
 
-    //метод, устанавливающий имя преподавателя
-    void setTeaherName(std::string nameOfTeacher);
-
-
     //метод, получающий название курса
     std::string getCourseName();
 
-    //метод, получающий имя преподавателя
-    std::string getTeacherName();
-
     //метод, выводящий приветствие пользователю GradeBook
     void displayMessage();
-
-    //метод усредняет введенные оценки
-    void determineClassAverage();
 
     //ввести произвольное число оценок
     void inputGrades();
@@ -35,13 +26,11 @@ public:
     //вывести отчет по введенным оценкам
     void displayGradeReport();
 
+    //определить максимум из трех целых
+    int maximum(int, int, int);
+
     private:
         std::string courseName; //название курса для данного объекта класса GradeBook
-        std::string teacherName; //имя преподавателя, ведущего курс
-        int aCount; //число оценок А
-        int bCount; //число оценок В
-        int cCount; //число оценок С
-        int dCount; //число оценок D
-        int fCount; //чисо оценок F
+        int maximumGrade; //максимум из 3 значений
 
 };  //конец класса GradeBook

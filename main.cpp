@@ -1,7 +1,6 @@
-//Пример 12
-//В метод void inputGrades() добавлен расчет средней оценки класса. Вес оценки 'A' - 4 пункта, оценки 'B' - 3 пункта и т.д.
-
-#include <iostream>
+//Пример 13
+//Произведена модификация класса, включая в него определяемую пользователем
+//функцию maximum, которая находит и возвращает наибольшее из трех целых значений.
 
 #include "GradeBook.h"
 
@@ -9,16 +8,16 @@
 int main()
 {
     //создать объект класса GradeBook
-    GradeBook gradeBook1("CS101 Introduction to C++ Programming", "Ivanov Victor");
+    GradeBook myGradeBook("CS101 C++ Programming");
 
     //вывести приветствие
-    gradeBook1.displayMessage();
+    myGradeBook.displayMessage();
 
     //прочитать вводимые оценки
-    gradeBook1.inputGrades();
+    myGradeBook.inputGrades();
 
     //вывести отчет по оценкам
-    gradeBook1.displayGradeReport();
+    myGradeBook.displayGradeReport();
 
 
     return 0;

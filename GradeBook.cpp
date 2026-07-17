@@ -1,25 +1,16 @@
-//Пример 12
-//В метод void inputGrades() добавлен расчет средней оценки класса. Вес оценки 'A' - 4 пункта, оценки 'B' - 3 пункта и т.д.
-
+//Пример 13
+//Произведена модификация класса, включая в него определяемую пользователем
+//функцию maximum, которая находит и возвращает наибольшее из трех целых значений.
 #include <iostream>
-using std::fixed;
-
-#include <iomanip>
-using std::setprecision;
 
 #include "GradeBook.h"
 
 
     //конструктор инициализирует название курса courseName переданной строкой
-    GradeBook::GradeBook(std::string nameOfCourse, std::string nameOfTeacher)
+    GradeBook::GradeBook(std::string nameOfCourse)
     {
         setCourseName(nameOfCourse);
-        setTeaherName(nameOfTeacher);
-        aCount = 0; //инициализировать нулем счетчик оценок А
-        bCount = 0; //инициализировать нулем счетчик оценок B
-        cCount = 0; //инициализировать нулем счетчик оценок C
-        dCount = 0; //инициализировать нулем счетчик оценок D
-        fCount = 0; //инициализировать нулем счетчик оценок F
+        maximumGrade = 0;
     }
 
     //метод, устанавливающий название курса гарантирует, что название курса содержит не более 25 символов
@@ -39,11 +30,6 @@ using std::setprecision;
 
     }
 
-    //метод, устанавливающий имя преподавателя
-    void GradeBook::setTeaherName(std::string nameOfTeacher)
-    {
-        teacherName = nameOfTeacher;
-    }
 
     //метод, получающий название курса
     std::string GradeBook::getCourseName()
@@ -51,119 +37,43 @@ using std::setprecision;
         return courseName;  //возвратить название курса из объекта
     }
 
-     //метод, получающий имя преподавателя
-    std::string GradeBook::getTeacherName()
-    {
-        return teacherName;
-    }
-
 
     //метод, выводящий приветствие пользователю GradeBook
     void GradeBook::displayMessage()
     {
-        std::cout << "Welcome to the GradeBook for\n" << getCourseName() << "!"
-            << "\nThis course is presented by: " << getTeacherName() << std::endl;
+        std::cout << "Welcome to the GradeBook for\n" << getCourseName()
+            << "!\n" << std::endl;
     }
 
-    //метод усредняет введенные оценки
-    void GradeBook::determineClassAverage()
-    {
-        int total = 0;  //сумма оценок, введенных пользователем
-        int gradeCounter = 0;   //счетчик оценок
-        int grade = 0;  //значение введенной пользователем оценки
-        double average;    //средняя оценка
-
-        std::cout << "Enter grade or -1 to quit: ";
-        std::cin >> grade;
-
-        while(grade != -1)
-        {
-            total += grade;
-            gradeCounter ++;
-
-            std::cout << "Enter grade or -1 to quit: ";
-            std::cin >> grade;
-        }
-
-        if(gradeCounter != 0)
-        {
-            average = static_cast<double>(total)/gradeCounter;
-
-            std::cout << "\nTotal of all " << gradeCounter
-                << " grades entered is " << total << std::endl;
-            std::cout << "Class average is " << setprecision(2) << fixed
-                << average << std::endl;
-        }
-        else
-            std::cout << "No grades were entered" << std::endl;
-
-
-     }
-
-     //ввести произвольное число оценок, обновить счетчик оценок
+     //получить от пользователя три оценки; определить максимум
      void GradeBook::inputGrades()
      {
-        int grade;  //оценка, введенная пользователем
+        int grade1;  //первая оценка, введенная пользователем
+        int grade2;  //вторая оценка, введенная пользователем
+        int grade3;  //третья оценка, введенная пользователем
 
-        std::cout << "Enter the letter grades." << std::endl
-            << "Enter the EOF character to end input." << std::endl;
+        std::cout << "Enter three integer grades: ";
+        std::cin >> grade1 >> grade2 >> grade3;
 
-        //цикл, пока пользователь не введет комбинацию для конца файла
-        while( (grade = std::cin.get()) != EOF)
-        {
-            //определить, какакя введена оценка
-            switch(grade)
-            {
-                case 'A':   //оценка А в верхнем регистре
-                case 'a':   //или а в нижнем регистреа
-                    aCount++;
-                    break;
+        maximumGrade = maximum(grade1, grade2, grade3);
+     }
 
-                case 'B':   //оценка B в верхнем регистре
-                case 'b':   //или b в нижнем регистреа
-                    bCount++;
-                    break;
+     int GradeBook::maximum(int x, int y, int z)
+     {
+        int maximumValue = x;
 
-                case 'C':   //оценка C в верхнем регистре
-                case 'c':   //или c в нижнем регистреа
-                    cCount++;
-                    break;
+        if(y > maximumValue)
+            maximumValue = y;
 
-                case 'D':   //оценка D в верхнем регистре
-                case 'd':   //или d в нижнем регистреа
-                    dCount++;
-                    break;
+        if(z > maximumValue)
+            maximumValue = z;
 
-                case 'F':   //оценка F в верхнем регистре
-                case 'f':   //или f в нижнем регистреа
-                    fCount++;
-                    break;
-
-                case '\n':  //игнорировать вводимые символы новой строки,
-                case '\t':  //табуляции,
-                case ' ':   //и пробела
-                    break;
-
-                default:    //перехватывает все остальные символы
-                    std::cout << "Incorrect letter grade entered."
-                        << "Enter a new grade." << std::endl;
-            }
-        }
+        return maximumValue;
      }
 
      //вывести отчет по оценкам, введенным пользователем
      void GradeBook::displayGradeReport()
      {
-        //вывести сводку результатов
-        std::cout << "\n\nNumber of students who received each letter grade:"
-            << "\nA: " << aCount    //вывести число оценок А
-            << "\nB: " << bCount    //вывести число оценок B
-            << "\nC: " << cCount    //вывести число оценок C
-            << "\nD: " << dCount    //вывести число оценок D
-            << "\nF: " << fCount;    //вывести число оценок F
-
-            int count = aCount + bCount + cCount + dCount + fCount;
-
-        std::cout << "\n\nAverage rating for class: " << (aCount*4 + bCount*3 + cCount*2 + dCount)/count;
-        std::cout << std::endl;
+        //вывести максимум введенных оценок
+        std::cout << "\n\Maximum of grades entered: " << maximumGrade << std::endl;
      }
